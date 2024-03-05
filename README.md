@@ -1,4 +1,2 @@
-# Steps to make the exact same project by yourself
-
-# 
+# Details and making process of project
 
