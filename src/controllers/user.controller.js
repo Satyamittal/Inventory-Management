@@ -26,8 +26,22 @@ export default class UserController
             return res.render('login',{errorMessage: "Invalid Credentials"})
         }
         req.session.userEmail = email ;
-        
+
         var products = ProductModel.get();
-        res.render('products',{products:products});
+        res.render('products',{products:products,userEmail: req.session.userEmail});
+    }
+    logout(req,res)
+    {
+        // on logout , destroy the session
+        req.session.destroy(err=>{
+            if(err)
+            {
+                console.log(err) ;
+            }
+            else
+            {
+                res.redirect('/login');
+            }
+        });
     }
 }

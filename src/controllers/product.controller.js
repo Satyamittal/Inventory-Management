@@ -31,10 +31,10 @@ export class ProductController{
 
     getProducts(req,res){
         var products = ProductModel.get();
-        res.render('products',{products:products});
+        res.render('products',{products,userEmail: req.session.userEmail});
     }
     getNewProductForm(req,res){
-        res.render('new-product',{errorMessage:null});
+        res.render('new-product',{errorMessage:null,userEmail: req.session.userEmail});
     }
 
     addNewProduct(req,res){
@@ -43,11 +43,11 @@ export class ProductController{
 
         ProductModel.add(req.body);
         var products = ProductModel.get();
-        res.render('products',{products});
+        res.render('products',{products,userEmail: req.session.userEmail});
     }
     getUpdateProductForm(req,res){
         var product = ProductModel.getProductById(req.params.id) ;
-        res.render('update-product',{errorMessage: null,product});
+        res.render('update-product',{errorMessage: null,product,userEmail: req.session.userEmail});
     }
     updateProduct(req,res){
         const imageFile = 'images/'+req.file.filename ;
@@ -55,13 +55,13 @@ export class ProductController{
         
         ProductModel.update(req.body) ;
         var products = ProductModel.get();
-        res.render('products',{products});
+        res.render('products',{products,userEmail: req.session.userEmail});
     }
     deleteProduct(req,res){
         const id = req.params.id ; 
         ProductModel.delete(id);
         var products = ProductModel.get();
-        res.render('products',{products});
+        res.render('products',{products,userEmail: req.session.userEmail});
     }
 
 }

@@ -76,7 +76,7 @@ server.get('/register',userController.getRegistrationPage) ;
 server.get('/login',userController.getLoginPage) ;
 server.post('/register' ,userController.registerUser) ;
 server.post('/login' ,userController.loginUser) ; 
-
+server.get('/logout',userController.logout) ;
 
 
 /** If we import a function , we can use it exaclty by its name irrespective of default or named import.
