@@ -57,7 +57,8 @@ const productController = new ProductController() ;
 server.get('/',productController.getProducts);
 server.get('/new-product',productController.getNewProductForm);
 server.post('/',validateRequest,productController.addNewProduct);
-
+server.get('/update-product/:id',productController.getUpdateProductForm) ;
+server.post('/update-product',validateRequest,productController.updateProduct);
 
 
 

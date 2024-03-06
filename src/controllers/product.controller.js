@@ -36,12 +36,21 @@ export class ProductController{
     getNewProductForm(req,res){
         res.render('new-product',{errorMessage:null});
     }
+
     addNewProduct(req,res){
         ProductModel.add(req.body);
         var products = ProductModel.get();
         res.render('products',{products});
     }
-
+    getUpdateProductForm(req,res){
+        var product = ProductModel.getProductById(req.params.id) ;
+        res.render('update-product',{errorMessage: null,product});
+    }
+    updateProduct(req,res){
+        ProductModel.update(req.body) ;
+        var products = ProductModel.get();
+        res.render('products',{products});
+    }
 
 
 }

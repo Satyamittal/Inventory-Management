@@ -21,14 +21,14 @@ export default class ProductModel{
       productObject.id = products.length + 1;
       products.push(productObject);
     }
-    static getById(id){
+    static getProductById(id){
       return products.find(p=> p.id == id) ;
     }
     static update(productObj)
     {
-      const index = products.findIndex(p => p.id == productObj.id) ;
-      products[index] = productObj ;
+      products[productObj.id -1 ] = productObj ;
     }
+
 
 }
 
