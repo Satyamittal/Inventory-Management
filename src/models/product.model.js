@@ -17,6 +17,10 @@ export default class ProductModel{
     static get(){
         return products;
     }
+    static add(productObject){
+      productObject.id = products.length + 1;
+      products.push(productObject);
+    }
     static getById(id){
       return products.find(p=> p.id == id) ;
     }

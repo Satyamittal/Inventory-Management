@@ -55,7 +55,8 @@ server.use(express.urlencoded({extended: true})) ;
 /** Write Your code Here */
 const productController = new ProductController() ;
 server.get('/',productController.getProducts);
-
+server.get('/new-product',productController.getNewProductForm);
+server.post('/',productController.addNewProduct);
 
 
 

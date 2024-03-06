@@ -24,12 +24,23 @@ export class ProductController{
          *  res.status(200).send("Welcome") ;
         */
     }
+    serveStaticFile(req,res){
+        var filePath = path.join(path.resolve(),'public','html','products.html') ;
+        return res.sendFile(filePath) ;
+    }
+
     getProducts(req,res){
         var products = ProductModel.get();
         res.render('products',{products:products});
     }
-
-
+    getNewProductForm(req,res){
+        res.render('new-product');
+    }
+    addNewProduct(req,res){
+        ProductModel.add(req.body);
+        var products = ProductModel.get();
+        res.render('products',{products});
+    }
 
 
 
