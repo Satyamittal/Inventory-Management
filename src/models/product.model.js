@@ -18,7 +18,8 @@ export default class ProductModel{
         return products;
     }
     static add(productObject){
-      productObject.id = products.length + 1;
+      const previousIndex = products.length - 1 ;
+      productObject.id = parseInt(products[previousIndex].id )+ 1 ;
       products.push(productObject);
     }
     static getProductById(id){
@@ -26,9 +27,16 @@ export default class ProductModel{
     }
     static update(productObj)
     {
-      products[productObj.id -1 ] = productObj ;
+      const index = products.findIndex(p=> p.id == productObj.id) ;
+      products[index ] = productObj ;
     }
-
+    static delete(id){
+      const index = products.findIndex(p=> p.id == id) ;
+      products.splice(index,1) ;
+      for(let i=0; i<products.length; i++){
+        products[i].id = i+1 ;
+      } 
+    }
 
 }
 

@@ -9,7 +9,7 @@
 /** Importing external modules like following */
 import express from 'express' ;
 import ejsLayouts from 'express-ejs-layouts' ;
-
+ 
 /** Importing internal modules: Named and Default imports */
 
 /** Named Imports: - import {class or Function Name} from './src/controllers/product.controller.js';
@@ -24,8 +24,6 @@ import ejsLayouts from 'express-ejs-layouts' ;
 
 import { ProductController } from './src/controllers/product.controller.js';
 import { validateRequest } from './src/middlewares/validation.middleware.js';
-
-
 
 
 /** Importing core modules */
@@ -59,9 +57,8 @@ server.get('/new-product',productController.getNewProductForm);
 server.post('/',validateRequest,productController.addNewProduct);
 server.get('/update-product/:id',productController.getUpdateProductForm) ;
 server.post('/update-product',validateRequest,productController.updateProduct);
-
-
-
+server.post('/delete-product/:id',productController.deleteProduct) ; 
+ 
 
 /** If we import a function , we can use it exaclty by its name irrespective of default or named import.
  *  If we import class , we have to create an instance for it to use its properties and methods.
