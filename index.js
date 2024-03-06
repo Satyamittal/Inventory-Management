@@ -25,6 +25,7 @@ import ejsLayouts from 'express-ejs-layouts' ;
 import { ProductController } from './src/controllers/product.controller.js';
 import { validateRequest } from './src/middlewares/validation.middleware.js';
 import { uploadFile } from './src/middlewares/file-upload.middleware.js';
+import UserController from './src/controllers/user.controller.js';
 
 /** Importing core modules */
 import path from 'path' ;
@@ -54,13 +55,20 @@ server.use(express.urlencoded({extended: true})) ;
 
 /** Write Your code Here */
 const productController = new ProductController() ;
+const userController = new UserController() ;
+
 server.get('/',productController.getProducts);
 server.get('/new-product',productController.getNewProductForm);
 server.post('/',uploadFile.single('file'),validateRequest,productController.addNewProduct);
 server.get('/update-product/:id',productController.getUpdateProductForm) ;
 server.post('/update-product',uploadFile.single('file'),validateRequest,productController.updateProduct);
 server.post('/delete-product/:id',productController.deleteProduct) ; 
- 
+server.get('/register',userController.getRegistrationPage) ;
+server.get('/login',userController.getLoginPage) ;
+server.post('/register' ,userController.registerUser) ;
+server.post('/login' ,userController.loginUser) ; 
+
+
 
 /** If we import a function , we can use it exaclty by its name irrespective of default or named import.
  *  If we import class , we have to create an instance for it to use its properties and methods.
