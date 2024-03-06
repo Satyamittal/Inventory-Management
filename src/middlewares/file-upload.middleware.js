@@ -16,3 +16,12 @@ const storageConfig = multer.diskStorage({
 });
 
 export const uploadFile = multer({storage: storageConfig});
+
+/** How to add Multer in your Project
+ * 
+ * Install Multer
+ * Changes in views, models, forms
+ * Middleware to handle files (save in local then put in array)
+ * Apply that middleware
+ * Update controller to update images
+ */
