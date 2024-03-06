@@ -23,7 +23,7 @@ import ejsLayouts from 'express-ejs-layouts' ;
 /** Write your code Here */
 
 import { ProductController } from './src/controllers/product.controller.js';
-
+import { validateRequest } from './src/middlewares/validation.middleware.js';
 
 
 
@@ -56,7 +56,7 @@ server.use(express.urlencoded({extended: true})) ;
 const productController = new ProductController() ;
 server.get('/',productController.getProducts);
 server.get('/new-product',productController.getNewProductForm);
-server.post('/',productController.addNewProduct);
+server.post('/',validateRequest,productController.addNewProduct);
 
 
 

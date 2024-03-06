@@ -7,8 +7,9 @@ import { body ,validationResult} from "express-validator";
 
 export const validateRequest = async (req,res,next) =>
 {
-    // validate the form data
+
 /*
+    // validate the form data
     const { name, price, imageUrl } = req.body;
     let errors = [];
     // trim function removes the space from start and end of the string
@@ -32,7 +33,6 @@ export const validateRequest = async (req,res,next) =>
     }
     
     next() ;
-
 */
 
 // Alternate-2 Using express validator

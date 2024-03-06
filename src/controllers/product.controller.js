@@ -34,7 +34,7 @@ export class ProductController{
         res.render('products',{products:products});
     }
     getNewProductForm(req,res){
-        res.render('new-product');
+        res.render('new-product',{errorMessage:null});
     }
     addNewProduct(req,res){
         ProductModel.add(req.body);
