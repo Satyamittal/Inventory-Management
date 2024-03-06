@@ -22,7 +22,7 @@ import ejsLayouts from 'express-ejs-layouts' ;
 */
 /** Write your code Here */
 
-
+import { ProductController } from './src/controllers/product.controller.js';
 
 
 
@@ -53,10 +53,8 @@ server.use(express.urlencoded({extended: true})) ;
  */
 
 /** Write Your code Here */
-server.get('/',(req,res)=>
-{
-    return res.send('Welcome') ;
-})
+const productController = new ProductController() ;
+server.get('/',productController.getProducts);
 
 
 

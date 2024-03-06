@@ -1,5 +1,5 @@
 /**
- * Controllers are used to serve the views (which are also known as dynamic files ) 
+ * Controllers are used to serve the requests (which may innvolve rendering views,returning JSON data,etc) 
  * Naming of controllers are done in this fashion : -- product.controller.js
  */
 
@@ -7,7 +7,7 @@
  * Importing Data and Modules
  */
 import ProductModel from '../models/product.model.js';
-
+import path from 'path' ;
 export class ProductController{
 
     /** Data sent by form is placed in "req.body" */
@@ -24,8 +24,10 @@ export class ProductController{
          *  res.status(200).send("Welcome") ;
         */
     }
-
-
+    getProducts(req,res){
+        const filePath = path.join(path.resolve(), 'public', 'html', 'products.html');
+        return res.sendFile(filePath);
+    }
 
 
 
