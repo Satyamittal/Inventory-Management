@@ -25,8 +25,8 @@ export class ProductController{
         */
     }
     getProducts(req,res){
-        const filePath = path.join(path.resolve(), 'public', 'html', 'products.html');
-        return res.sendFile(filePath);
+        var products = ProductModel.get();
+        res.render('products',{products:products});
     }
 
 
