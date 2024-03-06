@@ -21,11 +21,13 @@ import ejsLayouts from 'express-ejs-layouts' ;
  *         2) can change the name like : -  import renamed from './file' 
 */
 /** Write your code Here */
-
+import session from 'express-session';
 import { ProductController } from './src/controllers/product.controller.js';
 import { validateRequest } from './src/middlewares/validation.middleware.js';
 import { uploadFile } from './src/middlewares/file-upload.middleware.js';
 import UserController from './src/controllers/user.controller.js';
+import { auth } from './src/middlewares/auth.middleware.js';
+
 
 /** Importing core modules */
 import path from 'path' ;
@@ -57,12 +59,19 @@ server.use(express.urlencoded({extended: true})) ;
 const productController = new ProductController() ;
 const userController = new UserController() ;
 
-server.get('/',productController.getProducts);
-server.get('/new-product',productController.getNewProductForm);
-server.post('/',uploadFile.single('file'),validateRequest,productController.addNewProduct);
-server.get('/update-product/:id',productController.getUpdateProductForm) ;
-server.post('/update-product',uploadFile.single('file'),validateRequest,productController.updateProduct);
-server.post('/delete-product/:id',productController.deleteProduct) ; 
+server.use(session({
+    secret: "Secret Key" ,
+    resave: false ,
+    saveUninitialized: false,
+    cookie: {secure: false}
+}))
+
+server.get('/',auth,productController.getProducts);
+server.get('/new-product',auth ,productController.getNewProductForm);
+server.post('/',auth,uploadFile.single('file'),validateRequest,productController.addNewProduct);
+server.get('/update-product/:id',auth,productController.getUpdateProductForm) ;
+server.post('/update-product',auth,uploadFile.single('file'),validateRequest,productController.updateProduct);
+server.post('/delete-product/:id',auth,productController.deleteProduct) ; 
 server.get('/register',userController.getRegistrationPage) ;
 server.get('/login',userController.getLoginPage) ;
 server.post('/register' ,userController.registerUser) ;
