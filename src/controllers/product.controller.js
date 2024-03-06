@@ -1,5 +1,5 @@
 /**
- * Controllers are used to serve the views (which are also known as dynamic files )
+ * Controllers are used to serve the views (which are also known as dynamic files ) 
  * Naming of controllers are done in this fashion : -- product.controller.js
  */
 

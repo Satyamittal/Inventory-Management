@@ -53,7 +53,10 @@ server.use(express.urlencoded({extended: true})) ;
  */
 
 /** Write Your code Here */
-
+server.get('/',(req,res)=>
+{
+    return res.send('Welcome') ;
+})
 
 
 

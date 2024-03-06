@@ -1,5 +1,24 @@
 {
   "dependencies": {
     "punk01": "^0.0.17"
-  }
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "inventory-management",
+  "description": "An application to manage inventory or stocks of firm.",
+  "version": "1.0.0",
+  "type":"module",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Satyamittal/Inventory-Management.git"
+  },
+  "author": "Satyam Mittal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Satyamittal/Inventory-Management/issues"
+  },
+  "homepage": "https://github.com/Satyamittal/Inventory-Management#readme"
 }
