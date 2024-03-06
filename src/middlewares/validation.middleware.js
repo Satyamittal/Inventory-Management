@@ -43,6 +43,13 @@ const rules = [
     body('name').notEmpty().withMessage('Name is required') ,
     body('price').isFloat({gt:0}).withMessage("price should be a positive value"),
     body('imageUrl').isURL().withMessage('Invalid Url') ,
+    // there is no inbuilt function to check for file , but you can make your own custom function
+    body('file').custom((value,{req})=>{
+        if(!req.file){
+            throw new Error("Image is required");
+        }
+        return true;
+    }),
 ]
 
 // step-2  run those rules

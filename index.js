@@ -24,7 +24,7 @@ import ejsLayouts from 'express-ejs-layouts' ;
 
 import { ProductController } from './src/controllers/product.controller.js';
 import { validateRequest } from './src/middlewares/validation.middleware.js';
-
+import { uploadFile } from './src/middlewares/file-upload.middleware.js';
 
 /** Importing core modules */
 import path from 'path' ;
@@ -35,7 +35,9 @@ import path from 'path' ;
  *         Setting up path of views(dynamic content), so that we don't have to write absolute path again and again
  *         and using ejs-layouts for common layout of the website. Such that we don't have to write redundant code again n again.
  *         Setting up path of static files
- *         Parsing the form data , because it sent in encoded form. Form Data is placed in "req.body"
+ *         Parsing the form data , because it sent in encoded form. 
+ *         Form Data is placed in "req.body" other then files uploaded
+ *         Uploaded filesin form are placed inside "req.file"
  */
 
 const server = express() ;
@@ -54,9 +56,9 @@ server.use(express.urlencoded({extended: true})) ;
 const productController = new ProductController() ;
 server.get('/',productController.getProducts);
 server.get('/new-product',productController.getNewProductForm);
-server.post('/',validateRequest,productController.addNewProduct);
+server.post('/',uploadFile.single('file'),validateRequest,productController.addNewProduct);
 server.get('/update-product/:id',productController.getUpdateProductForm) ;
-server.post('/update-product',validateRequest,productController.updateProduct);
+server.post('/update-product',uploadFile.single('file'),validateRequest,productController.updateProduct);
 server.post('/delete-product/:id',productController.deleteProduct) ; 
  
 

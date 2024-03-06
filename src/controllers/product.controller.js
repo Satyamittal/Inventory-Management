@@ -38,6 +38,9 @@ export class ProductController{
     }
 
     addNewProduct(req,res){
+        const imageFile = 'images/'+req.file.filename ;
+        req.body.file = imageFile ;
+
         ProductModel.add(req.body);
         var products = ProductModel.get();
         res.render('products',{products});
@@ -47,6 +50,9 @@ export class ProductController{
         res.render('update-product',{errorMessage: null,product});
     }
     updateProduct(req,res){
+        const imageFile = 'images/'+req.file.filename ;
+        req.body.file = imageFile ;
+        
         ProductModel.update(req.body) ;
         var products = ProductModel.get();
         res.render('products',{products});

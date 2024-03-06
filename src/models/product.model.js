@@ -5,12 +5,13 @@
  */
 export default class ProductModel{
 
-    constructor(_id, _name, _desc, _price, _imageUrl){
+    constructor(_id, _name, _desc, _price, _imageUrl,_file){
         this.id = _id;
         this.name = _name;
         this.desc = _desc;
         this.price = _price;
         this.imageUrl = _imageUrl;
+        this.file = _file;
     }
     // static methods can directly be accessed from class itself , 
     // we don't have to create instance for these
