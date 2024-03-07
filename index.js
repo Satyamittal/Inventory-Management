@@ -27,7 +27,8 @@ import { validateRequest } from './src/middlewares/validation.middleware.js';
 import { uploadFile } from './src/middlewares/file-upload.middleware.js';
 import UserController from './src/controllers/user.controller.js';
 import { auth } from './src/middlewares/auth.middleware.js';
-
+import cookieParser from 'cookie-parser';
+import { setLastVisit } from './src/middlewares/lastVisit.middleware.js';
 
 /** Importing core modules */
 import path from 'path' ;
@@ -58,6 +59,8 @@ server.use(express.urlencoded({extended: true})) ;
 /** Write Your code Here */
 const productController = new ProductController() ;
 const userController = new UserController() ;
+server.use(cookieParser()) ;
+// server.use(setLastVisit) ;
 
 server.use(session({
     secret: "Secret Key" ,
@@ -66,7 +69,7 @@ server.use(session({
     cookie: {secure: false}
 }))
 
-server.get('/',auth,productController.getProducts);
+server.get('/',setLastVisit,auth,productController.getProducts);
 server.get('/new-product',auth ,productController.getNewProductForm);
 server.post('/',auth,uploadFile.single('file'),validateRequest,productController.addNewProduct);
 server.get('/update-product/:id',auth,productController.getUpdateProductForm) ;
